@@ -96,7 +96,7 @@
 
         /* Modal Styles */
         .modal {
-            display: none;
+            display: flex;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -107,6 +107,13 @@
             justify-content: center;
             align-items: center;
             padding: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
         }
         .modal-content {
             background-color: white;
@@ -116,6 +123,11 @@
             max-width: 400px;
             text-align: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
         }
         .close-btn {
             background: #d9534f;
@@ -185,11 +197,11 @@
 
     <script>
         function openModal() {
-            document.getElementById('orderModal').style.display = 'flex';
+            document.getElementById('orderModal').classList.add('show');
         }
 
         function closeModal() {
-            document.getElementById('orderModal').style.display = 'none';
+            document.getElementById('orderModal').classList.remove('show');
         }
     </script>
 
